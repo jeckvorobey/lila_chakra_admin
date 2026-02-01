@@ -1,11 +1,13 @@
 <template>
   <q-page class="q-pa-md">
-    <q-card class="bg-surface">
+    <PageHeader title="Games" />
+
+    <AppCard>
       <q-table
-        title="Games"
         :rows="rows"
         :columns="columns"
         row-key="id"
+        flat
         card-class="bg-surface text-text-primary"
         table-header-class="text-text-secondary"
       >
@@ -22,12 +24,14 @@
           </q-td>
         </template>
       </q-table>
-    </q-card>
+    </AppCard>
   </q-page>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import PageHeader from 'components/shared/PageHeader.vue';
+import AppCard from 'components/shared/AppCard.vue';
 
 defineOptions({
   name: 'GamesPage'

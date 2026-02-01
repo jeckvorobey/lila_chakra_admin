@@ -1,34 +1,21 @@
 <template>
   <q-page class="q-pa-md">
-    <div class="row items-center justify-between q-mb-lg">
-      <div class="text-h4 text-text-primary">Content Management</div>
-      <q-btn color="primary" icon="add" label="Add New" unelevated />
-    </div>
+    <PageHeader title="Content Management">
+      <template #actions>
+        <q-btn color="primary" icon="add" label="Add New" unelevated />
+      </template>
+    </PageHeader>
 
-    <!-- Custom Tabs -->
     <div class="q-mb-lg">
-      <div class="row q-gutter-sm">
-        <q-btn
-          v-for="t in ['cells', 'plans', 'cards']"
-          :key="t"
-          :label="t.charAt(0).toUpperCase() + t.slice(1)"
-          :color="tab === t ? 'primary' : 'surface'"
-          :text-color="tab === t ? 'white' : 'text-secondary'"
-          unelevated
-          no-caps
-          class="rounded-borders-sm"
-          @click="tab = t"
-        />
-      </div>
+      <TabPills v-model="tab" :tabs="tabs" />
     </div>
 
-    <!-- Tab Panels / Content -->
     <q-tab-panels v-model="tab" animated class="bg-transparent">
       <q-tab-panel name="cells" class="q-pa-none">
         <div class="row q-col-gutter-md">
            <!-- Column 1 -->
            <div class="col-12 col-md-6 column q-gutter-md">
-             <q-card flat class="bg-surface text-text-primary rounded-borders-md">
+             <AppCard>
                <q-card-section>
                  <div class="text-h6">Core Cells (1-72)</div>
                </q-card-section>
@@ -48,12 +35,12 @@
                    </q-item>
                  </q-list>
                </q-card-section>
-             </q-card>
+             </AppCard>
            </div>
            
            <!-- Column 2 -->
            <div class="col-12 col-md-6 column q-gutter-md">
-             <q-card flat class="bg-surface text-text-primary rounded-borders-md">
+             <AppCard>
                <q-card-section>
                  <div class="text-h6">Special Transitions</div>
                </q-card-section>
@@ -62,7 +49,7 @@
                    Manage snakes and arrows configurations here.
                  </div>
                </q-card-section>
-             </q-card>
+             </AppCard>
            </div>
         </div>
       </q-tab-panel>
@@ -80,19 +67,19 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import PageHeader from 'components/shared/PageHeader.vue';
+import AppCard from 'components/shared/AppCard.vue';
+import TabPills from 'components/content/TabPills.vue';
 
 defineOptions({
   name: 'ContentPage'
 });
 
 const tab = ref('cells');
-</script>
 
-<style lang="scss" scoped>
-.rounded-borders-md {
-  border-radius: 12px;
-}
-.rounded-borders-sm {
-  border-radius: 8px;
-}
-</style>
+const tabs = [
+  { label: 'Cells', value: 'cells' },
+  { label: 'Plans', value: 'plans' },
+  { label: 'Cards', value: 'cards' },
+];
+</script>

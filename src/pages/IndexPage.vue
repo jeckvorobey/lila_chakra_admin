@@ -1,40 +1,21 @@
 <template>
   <q-page class="q-pa-md">
+    <PageHeader title="Dashboard" />
+
     <div class="row q-col-gutter-md q-mb-md">
-      <div class="col-12 col-md-4">
-        <q-card class="bg-surface">
-          <q-card-section>
-            <div class="text-subtitle2 text-text-secondary">Total Users</div>
-            <div class="text-h4 text-primary">1,234</div>
-          </q-card-section>
-        </q-card>
-      </div>
-      <div class="col-12 col-md-4">
-        <q-card class="bg-surface">
-          <q-card-section>
-            <div class="text-subtitle2 text-text-secondary">Active Games</div>
-            <div class="text-h4 text-secondary">56</div>
-          </q-card-section>
-        </q-card>
-      </div>
-      <div class="col-12 col-md-4">
-        <q-card class="bg-surface">
-          <q-card-section>
-            <div class="text-subtitle2 text-text-secondary">New Registrations</div>
-            <div class="text-h4 text-accent">+12</div>
-          </q-card-section>
-        </q-card>
+      <div v-for="(stat, index) in stats" :key="index" class="col-12 col-md-4">
+        <StatCard v-bind="stat" />
       </div>
     </div>
 
     <div class="row q-col-gutter-md">
       <div class="col-12">
-        <q-card class="bg-surface">
+        <AppCard>
           <q-card-section>
             <div class="text-h6 text-text-primary">Registration Growth</div>
             <apexchart type="area" height="300" :options="chartOptions" :series="series" />
           </q-card-section>
-        </q-card>
+        </AppCard>
       </div>
     </div>
   </q-page>
@@ -43,6 +24,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import VueApexCharts from 'vue3-apexcharts';
+import PageHeader from 'components/shared/PageHeader.vue';
+import StatCard from 'components/analytics/StatCard.vue';
+import AppCard from 'components/shared/AppCard.vue';
 
 defineOptions({
   name: 'IndexPage',
@@ -50,6 +34,12 @@ defineOptions({
     apexchart: VueApexCharts,
   }
 });
+
+const stats = ref([
+  { label: 'Total Users', value: '1,234', trend: 'up' as const, growth: '12%' },
+  { label: 'Active Games', value: '56', trend: 'up' as const, growth: '5%' },
+  { label: 'New Registrations', value: '+12', trend: 'up' as const, growth: '8%' },
+]);
 
 const series = ref([{
   name: 'Users',

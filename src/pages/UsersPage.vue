@@ -1,24 +1,26 @@
 <template>
   <q-page class="q-pa-md">
-    <q-card class="bg-surface">
+    <PageHeader title="Users" />
+
+    <AppCard>
       <q-table
-        title="Users"
         :rows="store.users"
         :columns="columns"
         row-key="id"
         v-model:pagination="pagination"
         :loading="store.loading"
-        @request="onRequest"
+        flat
         card-class="bg-surface text-text-primary"
         table-header-class="text-text-secondary"
+        @request="onRequest"
       >
         <template v-slot:body-cell-actions="props">
-            <q-td :props="props">
-                <q-btn flat round icon="edit" size="sm" />
-            </q-td>
+          <q-td :props="props">
+            <q-btn flat round icon="edit" size="sm" />
+          </q-td>
         </template>
       </q-table>
-    </q-card>
+    </AppCard>
   </q-page>
 </template>
 
@@ -26,6 +28,8 @@
 import { ref, onMounted } from 'vue';
 import { useUsersStore } from 'stores/users';
 import type { QTableProps } from 'quasar';
+import PageHeader from 'components/shared/PageHeader.vue';
+import AppCard from 'components/shared/AppCard.vue';
 
 defineOptions({
   name: 'UsersPage'
