@@ -22,11 +22,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import VueApexCharts from 'vue3-apexcharts';
 import PageHeader from 'components/shared/PageHeader.vue';
 import StatCard from 'components/analytics/StatCard.vue';
 import AppCard from 'components/shared/AppCard.vue';
+import { useTheme } from 'src/composables/useTheme';
 
 defineOptions({
   name: 'IndexPage',
@@ -34,6 +35,8 @@ defineOptions({
     apexchart: VueApexCharts,
   }
 });
+
+const { isDark } = useTheme();
 
 const stats = ref([
   { label: 'Total Users', value: '1,234', trend: 'up' as const, growth: '12%' },
@@ -46,27 +49,32 @@ const series = ref([{
   data: [31, 40, 28, 51, 42, 109, 100]
 }]);
 
-const chartOptions = ref({
-  chart: {
-    height: 350,
-    type: 'area',
-    toolbar: { show: false },
-    background: 'transparent'
-  },
-  theme: {
-    mode: 'dark' // Should be reactive to theme, but hardcoded for MVP
-  },
-  dataLabels: { enabled: false },
-  stroke: { curve: 'smooth' },
-  xaxis: {
-    categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    labels: { style: { colors: '#A1A1AA' } }
-  },
-  yaxis: {
-    labels: { style: { colors: '#A1A1AA' } }
-  },
-  grid: {
-    borderColor: '#2D3748'
-  }
+const chartOptions = computed(() => {
+  const textColor = isDark.value ? '#A1A1AA' : '#718096';
+  const borderColor = isDark.value ? '#2D3748' : '#E2E8F0';
+
+  return {
+    chart: {
+      height: 350,
+      type: 'area',
+      toolbar: { show: false },
+      background: 'transparent'
+    },
+    theme: {
+      mode: isDark.value ? 'dark' : 'light'
+    },
+    dataLabels: { enabled: false },
+    stroke: { curve: 'smooth' },
+    xaxis: {
+      categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      labels: { style: { colors: textColor } }
+    },
+    yaxis: {
+      labels: { style: { colors: textColor } }
+    },
+    grid: {
+      borderColor: borderColor
+    }
+  };
 });
 </script>

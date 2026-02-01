@@ -1,34 +1,50 @@
 // app global css in SCSS form
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+:root {
+  --app-text-primary: #1A202C;
+  --app-text-secondary: #718096;
+  --app-surface: #FFFFFF;
+  --app-surface-elevated: #F7FAFC;
+  --app-border: #E2E8F0;
+}
+
+body.body--dark {
+  --app-text-primary: #F5F5F4;
+  --app-text-secondary: #A1A1AA;
+  --app-surface: #1A1625;
+  --app-surface-elevated: #252136;
+  --app-border: #2D3748;
+}
+
 body {
   font-family: 'Inter', sans-serif;
+  color: var(--app-text-primary);
+  background-color: var(--app-surface-elevated); // Default page background
 }
 
 // Custom Classes based on Design System
 .text-text-primary {
-  color: #F5F5F4;
+  color: var(--app-text-primary) !important;
 }
 
 .text-text-secondary {
-  color: #A1A1AA;
+  color: var(--app-text-secondary) !important;
 }
 
 .bg-surface {
-  background-color: #1A1625;
+  background-color: var(--app-surface) !important;
 }
 
 .bg-surface-elevated {
-  background-color: #252136;
+  background-color: var(--app-surface-elevated) !important;
 }
 
-// Dark Mode Overrides (if needed)
+// Dark Mode Overrides (Explicit body classes from useTheme)
 body.body--dark {
-  background-color: #0F0D1A;
-  color: #F5F5F4;
+  background-color: #0F0D1A; // Match $dark-page
 }
 
 body.body--light {
   background-color: #F7FAFC;
-  color: #1A202C;
 }

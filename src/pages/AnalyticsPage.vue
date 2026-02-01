@@ -24,7 +24,7 @@
           </q-card-section>
           <q-card-section class="q-pt-none">
              <!-- Placeholder for Chart -->
-             <div class="flex flex-center bg-dark-page rounded-borders" style="height: 350px;">
+             <div class="flex flex-center bg-surface-elevated rounded-borders" style="height: 350px;">
                <div class="text-text-secondary">Line Chart Area</div>
              </div>
           </q-card-section>
@@ -39,7 +39,7 @@
           </q-card-section>
           <q-card-section class="q-pt-none">
              <!-- Placeholder for Chart -->
-             <div class="flex flex-center bg-dark-page rounded-borders" style="height: 350px;">
+             <div class="flex flex-center bg-surface-elevated rounded-borders" style="height: 350px;">
                <div class="text-text-secondary">Pie Chart Area</div>
              </div>
           </q-card-section>

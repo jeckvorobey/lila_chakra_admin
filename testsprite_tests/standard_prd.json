@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "project": "Lila Chakra Telegram Mini App",
+    "date": "2026-01-31",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "Lila Chakra is a Telegram Mini App designed to digitally adapt the ancient Indian game of self-discovery 'Lila' using AI-driven move interpretation. It features real-time theming support and an interactive game interface built with modern web technologies.",
+  "core_goals": [
+    "Enable users to play the Lila Chakra game within Telegram seamlessly.",
+    "Provide AI-driven interpretation of game moves to enhance user understanding and engagement.",
+    "Support dynamic light and dark theming across the app interface and charts.",
+    "Ensure high code quality and maintainability using modern frontend standards and testing.",
+    "Facilitate localization with support for multiple languages, defaulting to English.",
+    "Seamlessly integrate with backend APIs for game state management and data persistence."
+  ],
+  "key_features": [
+    "Telegram Mini App integration supporting in-app gameplay and interaction.",
+    "Dynamic CSS variable theming for light and dark modes replacing hardcoded styles.",
+    "Reactive chart components that adapt automatically to theme changes for better visual consistency.",
+    "Comprehensive state management using Pinia to handle game moves and state.",
+    "Localization support using Vue i18n with easy-to-extend translation files.",
+    "Unit testing and continuous linting/formatting ensuring code reliability.",
+    "Production ready build setup with environment configuration for deployment.",
+    "Structured and well-documented project architecture with modular components and services."
+  ],
+  "user_flow_summary": [
+    "User opens the Lila Chakra game within Telegram Mini App environment.",
+    "User starts a new game and rolls dice to make moves across game cells.",
+    "User receives AI interpretation and insights for each move they make.",
+    "Game state is updated and stored via API calls to backend services.",
+    "User interface responds dynamically to theme changes switching between light and dark modes.",
+    "Charts and analytics update reactively reflecting current game state and user performance.",
+    "User can switch languages as needed through localization support.",
+    "Upon game completion, users can review move history and AI commentary."
+  ],
+  "validation_criteria": [
+    "All game logic and state transitions conform to defined rules and pass unit tests.",
+    "Theme switching correctly updates all UI components and charts without visual glitches.",
+    "Localization strings are properly loaded and displayed based on user language selection.",
+    "API integration with backend services is fully functional and error handled.",
+    "Code meets linting standards with no critical issues and is properly formatted.",
+    "Production build runs without errors and is correctly minified and optimized.",
+    "User interface is responsive and compatible with Telegram Mini App constraints.",
+    "Documentation is complete and accurately reflects the current state of the project."
+  ],
+  "code_summary": {
+    "tech_stack": [
+      "TypeScript",
+      "Vue 3",
+      "Quasar",
+      "SCSS",
+      "Vitest",
+      "ApexCharts"
+    ],
+    "features": [
+      {
+        "name": "CSS Variable Theming",
+        "description": "Implemented CSS variables for app-wide theming to support both light and dark modes dynamically, replacing hardcoded color values in SCSS and components.",
+        "files": [
+          "src/css/app.scss",
+          "src/pages/AnalyticsPage.vue"
+        ]
+      },
+      {
+        "name": "Reactive Chart Theming",
+        "description": "Refactored IndexPage chart configuration to be reactive to theme changes, ensuring charts display correct colors in both light and dark modes.",
+        "files": [
+          "src/pages/IndexPage.vue"
+        ]
+      }
+    ]
+  }
+}

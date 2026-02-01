@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
 import { api } from 'boot/axios';
+import type { UserOut } from 'src/types/user.interface';
 
 export const useUsersStore = defineStore('users', {
   state: () => ({
-    users: [] as any[],
+    users: [] as UserOut[],
     loading: false,
     total: 0
   }),

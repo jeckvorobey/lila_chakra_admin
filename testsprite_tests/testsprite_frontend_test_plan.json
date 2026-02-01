@@ -1,0 +1,185 @@
+[
+  {
+    "id": "TC001",
+    "title": "Verify CSS Variable Theming Light Mode",
+    "description": "Ensure that when the app theme is set to light mode, all UI components and styles apply the correct CSS variables and no hardcoded colors appear.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Launch the Lila Chakra app in default (light) theme mode."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that all UI components use CSS variables correctly for colors instead of hardcoded values."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the colors rendered on the interface match the defined light mode CSS variable values."
+      },
+      {
+        "type": "action",
+        "description": "Inspect key styles in 'src/css/app.scss' and 'src/pages/AnalyticsPage.vue' to confirm no hardcoded colors are present."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that SCSS files are using CSS variables for theming."
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Verify CSS Variable Theming Dark Mode",
+    "description": "Ensure that when the app theme is switched to dark mode, all UI components and styles update dynamically to use correct CSS variables reflecting dark colors.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Switch the app theme to dark mode."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that all UI components update their colors to use CSS variable values defined for dark theme."
+      },
+      {
+        "type": "assertion",
+        "description": "Check visually and via style inspection that no hardcoded light colors remain in the interface."
+      },
+      {
+        "type": "action",
+        "description": "Monitor 'src/css/app.scss' and 'src/pages/AnalyticsPage.vue' to ensure styles respond to theme changes using CSS variables."
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Validate Reactive Chart Colors on Theme Change",
+    "description": "Ensure charts on the IndexPage update their color schemes reactively according to current theme (light or dark), with no stale or incorrect color artifacts.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the IndexPage of the app with light theme enabled."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the chart colors correspond exactly to the defined light theme color palette."
+      },
+      {
+        "type": "action",
+        "description": "Switch the app theme to dark mode."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the charts update automatically to use dark mode color palette without requiring a page reload."
+      },
+      {
+        "type": "action",
+        "description": "Switch back to light mode."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify charts update reactively and consistently with the light theme colors again."
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Check No Visual Glitches On Theme Toggle",
+    "description": "Verify that switching between light and dark themes does not cause any visual glitches or flickering in UI components including charts and analytics pages.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Rapidly toggle the app theme between light and dark modes multiple times."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that UI components, including those on AnalyticsPage.vue, remain stable with no flicker or broken styles."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure charts on IndexPage persistently show correct colors during and after toggling."
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Validate Theming Responsive Styling in Production Build",
+    "description": "Ensure that the production build preserves CSS variable theming functionality and reactive chart theming behaves correctly after minification and optimization.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Run a production build of the app using the environment configuration."
+      },
+      {
+        "type": "action",
+        "description": "Deploy and open the app in a production-like environment."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that CSS variables for theming function correctly with no visual regressions."
+      },
+      {
+        "type": "action",
+        "description": "Switch themes and observe reactive chart colors on IndexPage."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm charts update correctly and no errors occur related to theming or styling."
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Verify Error Handling When CSS Variables Are Missing",
+    "description": "Simulate missing or invalid CSS variables for theme colors and verify the app handles it gracefully without crashing or major UI breakage.",
+    "category": "error handling",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Manually remove or corrupt key CSS variables related to theming in 'src/css/app.scss'."
+      },
+      {
+        "type": "action",
+        "description": "Launch the app and attempt to switch themes."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the app shows fallback styles or meaningful error without crashing."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure charts and other UI components degrade gracefully and remain functional."
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Confirm CSS Variable Theming Consistency Across Components",
+    "description": "Validate that all themed components, including AnalyticsPage and general UI components, consistently use the same set of CSS variables without discrepancies.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate through various parts of the app, especially AnalyticsPage.vue and IndexPage.vue."
+      },
+      {
+        "type": "assertion",
+        "description": "Check computed styles or DOM to confirm consistent usage of CSS variables across all components."
+      },
+      {
+        "type": "assertion",
+        "description": "No component should use hardcoded colors differing from the theme variables."
+      }
+    ]
+  }
+]
