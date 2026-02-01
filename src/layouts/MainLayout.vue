@@ -43,6 +43,27 @@
           </q-item-section>
           <q-item-section>Users</q-item-section>
         </q-item>
+
+        <q-item clickable v-ripple to="/games">
+          <q-item-section avatar>
+            <q-icon name="casino" />
+          </q-item-section>
+          <q-item-section>Games</q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple to="/content">
+          <q-item-section avatar>
+            <q-icon name="library_books" />
+          </q-item-section>
+          <q-item-section>Content</q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple to="/analytics">
+          <q-item-section avatar>
+            <q-icon name="analytics" />
+          </q-item-section>
+          <q-item-section>Analytics</q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 

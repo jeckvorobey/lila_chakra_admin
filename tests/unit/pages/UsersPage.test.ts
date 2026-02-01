@@ -9,7 +9,7 @@ describe('UsersPage', () => {
   it('renders table and fetches data', () => {
     const wrapper = mount(UsersPage, {
       global: {
-        plugins: [Quasar, createTestingPinia({ createSpy: vi.fn, stubActions: false })],
+        plugins: [Quasar, createTestingPinia({ createSpy: vi.fn, stubActions: true })],
         stubs: { 
             QPage: { template: '<div><slot /></div>' },
             QTable: true 
