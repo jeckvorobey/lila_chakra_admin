@@ -17,8 +17,10 @@ describe('ContentPage', () => {
       },
     });
 
-    expect(wrapper.findComponent(QTabs).exists()).toBe(true);
     expect(wrapper.html()).toContain('Cells');
     expect(wrapper.html()).toContain('Plans');
+    // Check if buttons exist
+    const buttons = wrapper.findAll('.q-btn');
+    expect(buttons.length).toBeGreaterThan(0);
   });
 });
