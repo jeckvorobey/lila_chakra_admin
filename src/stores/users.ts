@@ -3,7 +3,7 @@ import { api } from 'boot/axios';
 
 export const useUsersStore = defineStore('users', {
   state: () => ({
-    users: [],
+    users: [] as any[],
     loading: false,
     total: 0
   }),

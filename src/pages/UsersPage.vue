@@ -4,7 +4,7 @@
 
     <AppCard>
       <q-table
-        :rows="store.users"
+        :rows="store.users || []"
         :columns="columns"
         row-key="id"
         v-model:pagination="pagination"
