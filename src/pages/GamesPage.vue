@@ -38,11 +38,11 @@ defineOptions({
 });
 
 const columns = [
-  { name: 'id', label: 'ID', field: 'id', sortable: true, align: 'left' },
-  { name: 'user', label: 'User', field: 'user', sortable: true, align: 'left' },
-  { name: 'status', label: 'Status', field: 'status', sortable: true, align: 'left' },
-  { name: 'created_at', label: 'Created At', field: 'created_at', sortable: true, align: 'right' },
-  { name: 'actions', label: 'Actions', field: 'actions', align: 'center' }
+  { name: 'id', label: 'ID', field: 'id', sortable: true, align: 'left' as const },
+  { name: 'user', label: 'User', field: 'user', sortable: true, align: 'left' as const },
+  { name: 'status', label: 'Status', field: 'status', sortable: true, align: 'left' as const },
+  { name: 'created_at', label: 'Created At', field: 'created_at', sortable: true, align: 'right' as const },
+  { name: 'actions', label: 'Actions', field: 'actions', align: 'center' as const }
 ];
 
 const rows = ref([

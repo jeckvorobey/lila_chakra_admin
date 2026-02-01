@@ -39,8 +39,8 @@ describe('LoginPage', () => {
     (store.login as any).mockResolvedValue(undefined);
 
     const inputs = wrapper.findAllComponents(QInput);
-    await inputs[0].vm.$emit('update:modelValue', 'admin');
-    await inputs[1].vm.$emit('update:modelValue', 'password');
+    await inputs[0]!.vm.$emit('update:modelValue', 'admin');
+    await inputs[1]!.vm.$emit('update:modelValue', 'password');
     
     // Find the native form and trigger submit
     await wrapper.find('form').trigger('submit');

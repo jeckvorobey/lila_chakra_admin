@@ -22,7 +22,7 @@ describe('TabPills', () => {
     // Find second button and click
     const buttons = wrapper.findAll('.q-btn');
     expect(buttons.length).toBe(2);
-    await buttons[1].trigger('click');
+    await buttons[1]!.trigger('click');
     
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
     expect(wrapper.emitted('update:modelValue')![0]).toEqual(['t2']);

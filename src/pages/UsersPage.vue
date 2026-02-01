@@ -51,7 +51,7 @@ const pagination = ref({
   rowsNumber: 0
 });
 
-async function onRequest(props: any) {
+async function onRequest(props: { pagination: { sortBy: string; descending: boolean; page: number; rowsPerPage: number; rowsNumber?: number } }) {
   const { page, rowsPerPage } = props.pagination;
   await store.fetchUsers({ page, rowsPerPage });
   pagination.value.page = page;
@@ -60,6 +60,6 @@ async function onRequest(props: any) {
 }
 
 onMounted(() => {
-  onRequest({ pagination: pagination.value });
+  void onRequest({ pagination: pagination.value });
 });
 </script>

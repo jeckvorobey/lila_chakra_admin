@@ -82,9 +82,9 @@ export default defineConfig((ctx) => {
       useCredentialsForManifestTag: false,
     },
 
-    cordova: {},
-    capacitor: {},
-    electron: {},
-    bex: {}
+    // cordova: {},
+    // capacitor: {},
+    // electron: {},
+    // bex: {}
   };
 });
