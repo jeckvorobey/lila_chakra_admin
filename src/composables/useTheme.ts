@@ -5,7 +5,7 @@ export type ThemeMode = 'dark' | 'light' | 'system';
 
 const STORAGE_KEY = 'lila-admin-theme-mode';
 
-const themeMode = ref<ThemeMode>('dark');
+const themeMode = ref<ThemeMode>('system');
 const systemPrefersDark = ref(true);
 
 function initSystemThemeDetection(): void {
@@ -20,13 +20,13 @@ function initSystemThemeDetection(): void {
 }
 
 function getSavedTheme(): ThemeMode {
-  if (typeof localStorage === 'undefined') return 'dark';
+  if (typeof localStorage === 'undefined') return 'system';
 
   const saved = localStorage.getItem(STORAGE_KEY);
   if (saved === 'dark' || saved === 'light' || saved === 'system') {
     return saved as ThemeMode;
   }
-  return 'dark';
+  return 'system';
 }
 
 function saveTheme(mode: ThemeMode): void {
