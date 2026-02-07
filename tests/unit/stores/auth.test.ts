@@ -1,46 +1,78 @@
+/**
+ * Базовые тесты для Auth Store (admin).
+ *
+ * Полные тесты находятся в src/stores/__tests__/auth.spec.ts
+ */
+
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
-import { useAuthStore } from 'stores/auth';
-import { api } from 'boot/axios';
 
-// Mock axios
-vi.mock('boot/axios', () => ({
-  api: {
+const { mockApi } = vi.hoisted(() => ({
+  mockApi: {
     post: vi.fn(),
-    defaults: { headers: { common: {} } }
-  }
+    defaults: {
+      headers: {
+        common: {} as Record<string, string | undefined>,
+      },
+      withCredentials: true,
+    },
+  },
 }));
+
+vi.mock('boot/axios', () => ({
+  api: mockApi,
+}));
+
+import { useAuthStore } from 'stores/auth';
 
 describe('Auth Store', () => {
   beforeEach(() => {
     setActivePinia(createPinia());
     vi.clearAllMocks();
+    mockApi.defaults.headers.common = {};
   });
 
   it('login action calls API and updates state', async () => {
     const store = useAuthStore();
-    const mockUser = { id: 1, login: 'admin' };
-    const mockResponse = { data: { access_token: 'token123', user: mockUser } };
-    
-    (api.post as any).mockResolvedValue(mockResponse);
+    const mockAdmin = {
+      id: 1,
+      email: 'admin@test.com',
+      full_name: 'Admin',
+      is_active: true,
+      created_at: '2025-01-01T00:00:00',
+    };
+    const mockResponse = {
+      data: { access_token: 'token123', admin: mockAdmin },
+    };
 
-    await store.login({ username: 'admin', password: 'password' });
+    vi.mocked(mockApi.post).mockResolvedValue(mockResponse);
 
-    // Assuming form data or json, adjusting to simple expectation
-    expect(api.post).toHaveBeenCalled(); 
-    expect(store.token).toBe('token123');
-    expect(store.user).toEqual(mockUser);
+    await store.login({ email: 'admin@test.com', password: 'password' });
+
+    expect(mockApi.post).toHaveBeenCalled();
+    expect(store.accessToken).toBe('token123');
+    expect(store.user).toEqual(mockAdmin);
     expect(store.isAuthenticated).toBe(true);
   });
 
-  it('logout action clears state', () => {
+  it('logout action clears state', async () => {
     const store = useAuthStore();
-    store.token = 'token123';
-    store.user = { id: 1, login: 'admin' };
+    store.accessToken = 'token123';
+    store.user = {
+      id: 1,
+      email: 'admin@test.com',
+      full_name: 'Admin',
+      is_active: true,
+      created_at: '2025-01-01T00:00:00',
+    };
 
-    store.logout();
+    vi.mocked(mockApi.post).mockResolvedValueOnce({
+      data: { success: true },
+    });
 
-    expect(store.token).toBeNull();
+    await store.logout();
+
+    expect(store.accessToken).toBeNull();
     expect(store.user).toBeNull();
     expect(store.isAuthenticated).toBe(false);
   });

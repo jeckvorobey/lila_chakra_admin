@@ -46,6 +46,6 @@ describe('LoginPage', () => {
     await wrapper.find('form').trigger('submit');
     await flushPromises();
     
-    expect(store.login).toHaveBeenCalledWith({ username: 'admin', password: 'password' });
+    expect(store.login).toHaveBeenCalledWith({ email: 'admin', password: 'password' });
   });
 });

@@ -92,8 +92,8 @@ function toggleLeftDrawer () {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 
-function logout() {
-  authStore.logout();
+async function logout() {
+  await authStore.logout();
   void router.push('/login');
 }
 </script>

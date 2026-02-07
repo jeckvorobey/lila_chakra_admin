@@ -7,8 +7,9 @@
             <div class="text-h6 text-center q-mb-md">Lila Chakra Admin</div>
             <q-form @submit="onSubmit" class="q-gutter-md">
               <q-input
-                v-model="username"
-                label="Username"
+                v-model="email"
+                label="Email"
+                type="email"
                 filled
                 :rules="[val => !!val || 'Required']"
               />
@@ -40,7 +41,7 @@ defineOptions({
   name: 'LoginPage'
 });
 
-const username = ref('');
+const email = ref('');
 const password = ref('');
 const loading = ref(false);
 
@@ -51,7 +52,7 @@ const $q = useQuasar();
 async function onSubmit() {
   loading.value = true;
   try {
-    await authStore.login({ username: username.value, password: password.value });
+    await authStore.login({ email: email.value, password: password.value });
     void router.push('/');
   } catch (error) {
     console.error(error);

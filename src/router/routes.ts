@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    // meta: { requiresAuth: true }, // Temporarily disabled for visual inspection
+    meta: { requiresAuth: true },
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: 'users', component: () => import('pages/UsersPage.vue') },
